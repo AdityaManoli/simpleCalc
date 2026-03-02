@@ -1,53 +1,49 @@
-def add(x, y):
-    return x + y
+class Calculator:
+    #constructor
+    def __init__(self, first_number, operation, second_number):
+        self.first_number = first_number
+        self.operation = operation
+        self.second_number = second_number
 
-def subtract(x, y):
-    return x - y
+    def add(self):
+        return self.first_number + self.second_number
 
-def multiply(x, y):
-    return x * y
+    def subtract(self):
+        return self.first_number - self.second_number
 
-def divide(x, y):
-    if y == 0:
-        return "Error: Division by zero"
-    return x / y
+    def multiply(self):
+        return self.first_number * self.second_number
 
-def calculator():
-    print("Simple Calculator")
-    print("-" * 30)
-    print("Select operation:")
-    print("1. Add")
-    print("2. Subtract")
-    print("3. Multiply")
-    print("4. Divide")
-    print("5. Exit")
-    print("-" * 30)
-    
-    while True:
-        choice = input("\nEnter choice (1/2/3/4/5): ")
-        
-        if choice == '5':
-            print("Thank you for using the calculator!")
-            break
-        
-        if choice in ('1', '2', '3', '4'):
-            try:
-                num1 = float(input("Enter first number: "))
-                num2 = float(input("Enter second number: "))
-                
-                if choice == '1':
-                    print(f"{num1} + {num2} = {add(num1, num2)}")
-                elif choice == '2':
-                    print(f"{num1} - {num2} = {subtract(num1, num2)}")
-                elif choice == '3':
-                    print(f"{num1} × {num2} = {multiply(num1, num2)}")
-                elif choice == '4':
-                    result = divide(num1, num2)
-                    print(f"{num1} ÷ {num2} = {result}")
-            except ValueError:
-                print("Invalid input! Please enter numeric values.")
-        else:
-            print("Invalid choice! Please try again.")
+    def divide(self):
+        if self.second_number == 0:
+            return "Error: Division by zero is not allowed."
+        return self.first_number / self.second_number
 
-if __name__ == "__main__":
-    calculator()
+
+def main():
+    first_number = float(input("Enter the first number: "))
+    operation = input("Enter the operation (+, -, *, /): ") 
+    second_number = float(input("Enter the second number: "))
+
+    calculator = Calculator(first_number, operation, second_number)
+
+    if calculator.operation == '+':
+        result = calculator.add()
+
+    elif calculator.operation == '-':
+        result = calculator.subtract()
+
+    elif calculator.operation == '*':
+        result = calculator.multiply()
+
+    elif calculator.operation == '/':
+        result = calculator.divide()
+
+    else:
+        result = "Error: Invalid operation."
+
+    print(f"Result: {result}")
+
+
+if __name__ == "__main__":    
+    main()
