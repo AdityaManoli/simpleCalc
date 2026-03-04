@@ -1,28 +1,8 @@
-class Calculator:
-    #constructor
-    def __init__(self, first_number, operation, second_number):
-        self.first_number = first_number
-        self.operation = operation
-        self.second_number = second_number
-
-    def add(self):
-        return self.first_number + self.second_number
-
-    def subtract(self):
-        return self.first_number - self.second_number
-
-    def multiply(self):
-        return self.first_number * self.second_number
-
-    def divide(self):
-        if self.second_number == 0:
-            return "Error: Division by zero is not allowed."
-        return self.first_number / self.second_number
-
+from advancedCalculator import AdvancedCalculator
 
 def main():
     while True:
-        print("\nSimple Calculator")
+        print("\nCalculator")
         choice = input("Q => Quit or press ENTER to continue: ")
 
         if choice.upper() == 'Q':
@@ -30,10 +10,16 @@ def main():
             exit()
 
         first_number = float(input("Enter the first number: "))
-        operation = input("Enter the operation (+, -, *, /): ") 
-        second_number = float(input("Enter the second number: "))
+        operation = input("Enter the operation (+, -, *, /, ^, sqrt): ") 
+        operation = operation.lower()
 
-        calculator = Calculator(first_number, operation, second_number)
+        if operation != 'sqrt':
+            second_number = float(input("Enter the second number: "))
+        else:
+            second_number = None
+    
+
+        calculator = AdvancedCalculator(first_number, operation, second_number)
 
         if calculator.operation == '+':
             result = calculator.add()
@@ -46,6 +32,12 @@ def main():
 
         elif calculator.operation == '/':
             result = calculator.divide()
+
+        elif calculator.operation == '^':
+            result = calculator.power() 
+
+        elif calculator.operation == 'sqrt':
+            result = calculator.square_root()
 
         else:
             result = "Error: Invalid operation."
