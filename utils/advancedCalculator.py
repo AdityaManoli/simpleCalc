@@ -1,4 +1,4 @@
-from calculator import Calculator
+from utils.calculator import Calculator
 
 class AdvancedCalculator(Calculator): #inherit from Calculator
     def power(self):
